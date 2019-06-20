@@ -11,7 +11,7 @@
 
 @interface secondViewController () 
 
-//@property (nonatomic, strong) secondTableView *secondTable;
+@property (nonatomic, strong) secondTableView *secondTable;//раскоментированно свойство
 
 @end
 
@@ -22,23 +22,16 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:182.0/255.0 blue:193.0/255.0 alpha:1];
-    secondViewController *secondTable = [[secondViewController alloc]init];
-    //ругается на все что ниже (EXC_BAD_ACCESS (код = 2))
- //   _secondTable.view.frame = CGRectMake(10.f, 200.f, 200.f, 200.f);
-  //  [self.view addSubview:self.secondTable];
-  //  [_secondTable didMoveToParentViewController:self];
-   // [self displayContentController:self];
-   // secondTable.view.frame = self.view.bounds;
-  //  [self addChildViewController:secondTable];
- //   [self.view addSubview:secondTable.view];
-  //  [self didMoveToParentViewController:self];
+    self.secondTable = [[secondTableView alloc]init];// инициализация через self, смена на наследование от secondTableView
+    [self displayContentController:self.secondTable]; //вызов функции для secondTable
+
     
 }
-- (void) displayContentController: (secondViewController*) content;
+- (void) displayContentController: (secondTableView*) content;
 {
     [self addChildViewController:content];
     content.view.frame = CGRectMake(0.f, 100.f, 300.f, 300.f);
-  //  [self.view addSubview:self.secondTable.view];
+    [self.view addSubview:self.secondTable.view];
     [content didMoveToParentViewController:self];
 }
 
